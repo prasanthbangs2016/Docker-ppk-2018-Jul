@@ -1,0 +1,22 @@
+FROM tomcat:8.0-jre8
+MAINTAINER PPK
+ADD "http://ftp-chi.osuosl.org/pub/jenkins/war-stable/2.121.1/jenkins.war" "/usr/local/tomcat/webapps/jenkins.war"
+EXPOSE 8080 #application runs on 8080 port
+CMD ["catalina.sh","run"] #
+
+docker run -it tomcat:8-jre8 /bin/bash
+docker build -t pk-jenkins:1.0 .
+docker run -it -p 80:8080 -d pk-jenkins:1.0
+
+54.167.19.238  # this is for tomcat home
+54.167.19.238/jenkins
+
+$ docker ps
+CONTAINER ID        IMAGE               COMMAND             CREATED              STATUS              PORTS                  NAMES
+f4bd0cd2cefd        pk-jenkins:1.0      "catalina.sh run"   About a minute ago   Up About a minute   0.0.0.0:80->8080/tcp   dreamy_g                 oldberg
+d386ccdca838        tomcat:8-jre8       "/bin/bash"         6 minutes ago        Up 6 minutes        8080/tcp               elegant_nightingale                 nightingale
+
+getting into path of /root/.jenkins/secrets/initialAdminPassword
+
+docker exec -it f4bd0cd2cefd /bin/bash 
+cat docker exec -it f4bd0cd2cefd /bin/bash
